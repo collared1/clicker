@@ -3,82 +3,77 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Skibidi Toilet Clicker</title>
+<title>Skibidi Toilet Clicker — Upgraded</title>
 <style>
   :root{
-    --bg:#0f1724;
-    --card:#0b1320;
-    --accent:#72f5c2;
-    --muted:#9aa7b2;
-    --glass: rgba(255,255,255,0.03);
-    --glass-2: rgba(255,255,255,0.02);
-    --glass-3: rgba(255,255,255,0.015);
+    --bg:#0f1724; --card:#0b1320; --accent:#72f5c2; --muted:#9aa7b2;
+    --glass: rgba(255,255,255,0.03); --glass-2: rgba(255,255,255,0.02);
   }
-  *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
+  *{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
   html,body{height:100%;margin:0;background:linear-gradient(180deg,#071021 0%, #081628 60%);color:#e6f0f2}
-  .wrap{max-width:1100px;margin:28px auto;padding:20px;display:grid;grid-template-columns: 1fr 380px;gap:18px}
+  .wrap{max-width:1200px;margin:24px auto;padding:18px;display:grid;grid-template-columns:1fr 420px;gap:18px}
   header{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between}
-  header h1{margin:0;font-size:20px;letter-spacing:0.4px}
+  header h1{margin:0;font-size:20px}
   header .meta{color:var(--muted);font-size:13px}
   .main{
     background:linear-gradient(180deg, var(--card), rgba(7,20,30,0.9));
     border-radius:12px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:12px;
     box-shadow: 0 6px 24px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.02);
   }
-  .toilet-wrap{display:flex;align-items:center;flex-direction:column;gap:12px}
-  .score{
-    text-align:center;
-  }
-  .score .big{font-size:36px;font-weight:700}
+  .toilet-wrap{display:flex;align-items:center;flex-direction:column;gap:12px;width:100%}
+  .score{ text-align:center }
+  .score .big{font-size:42px;font-weight:800;letter-spacing:0.6px}
   .score .small{color:var(--muted);font-size:13px}
   .toilet{
-    width:260px;height:260px;border-radius:26px;background:linear-gradient(180deg,#ecf7f1,#dffdf2);
+    width:300px;height:300px;border-radius:26px;background:linear-gradient(180deg,#ecf7f1,#dffdf2);
     display:grid;place-items:center;cursor:pointer;user-select:none;position:relative;
     box-shadow: 0 12px 35px rgba(2,8,12,0.6), 0 3px 0 rgba(0,0,0,0.25) inset;
     transition:transform 120ms cubic-bezier(.2,.9,.25,1);
   }
   .toilet:active{transform:scale(.97)}
-  /* Toilet face details (SVG inside) */
-  .toilet .spark{position:absolute;right:12px;top:12px;color:#54c09f;font-size:14px}
-  .controls{display:flex;gap:8px;align-items:center}
+  .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer;font-size:13px}
   .btn.primary{background:linear-gradient(90deg,#12c6a6,#3bd9b0);color:#01221b;border:none; font-weight:700}
   .rightcol{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:16px; height:fit-content;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
-  .panel-title{font-weight:700;margin-bottom:8px}
+  .panel-title{font-weight:800;margin-bottom:8px}
   .stat{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:6px}
-  .store{display:grid;gap:10px;max-height:60vh;overflow:auto;padding-right:6px}
+  .store{display:grid;gap:10px;max-height:35vh;overflow:auto;padding-right:6px}
   .card{background:linear-gradient(180deg,var(--glass),var(--glass-2));padding:10px;border-radius:10px;display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,0.02)}
-  .card .left{display:flex;gap:10px;align-items:center}
-  .icon{width:52px;height:52px;border-radius:8px;background:linear-gradient(180deg,#ffffff,#e6f6ef);display:grid;place-items:center;color:#08332a;font-weight:800}
+  .left{display:flex;gap:10px;align-items:center}
+  .icon{width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#e6f6ef);display:grid;place-items:center}
+  .icon img{width:44px;height:44px;object-fit:contain}
   .card h4{margin:0;font-size:15px}
   .card p{margin:0;color:var(--muted);font-size:12px}
   .buy{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
   .cost{font-weight:700}
   .owned{color:var(--muted);font-size:12px}
+  .tabs{display:flex;gap:8px;margin-top:8px}
+  .tab{padding:8px 10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);cursor:pointer;color:var(--muted)}
+  .tab.active{background:linear-gradient(90deg,#12c6a6,#3bd9b0);color:#01221b;border:none;font-weight:800}
+  .upgrades{display:grid;gap:10px;max-height:35vh;overflow:auto;padding-right:6px}
+  .upgrade-card{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
   footer{grid-column:1/-1;margin-top:6px;color:var(--muted);font-size:12px;text-align:center}
-  /* click particles */
   .particle{position:absolute;pointer-events:none;font-weight:800;filter:drop-shadow(0 6px 14px rgba(0,0,0,0.5));}
-  /* responsive */
   @media(max-width:980px){.wrap{grid-template-columns:1fr;}.rightcol{order:99}}
 </style>
 </head>
 <body>
 <div class="wrap" id="app">
   <header>
-    <h1>Skibidi Toilet Clicker 🚽</h1>
+    <h1>Skibidi Toilet Clicker 🚽 — Upgrades & Images</h1>
     <div class="meta">Click the toilet. Buy upgrades. Become legendary.</div>
   </header>
 
-  <section class="main">
+  <section class="main" aria-live="polite">
     <div class="toilet-wrap">
-      <div class="score" aria-live="polite">
+      <div class="score" >
         <div class="big" id="score">0</div>
         <div class="small">Skibidi Flushes • <span id="cps">0</span> / sec</div>
       </div>
 
       <div id="toilet" class="toilet" title="Click me!">
-        <!-- Simple stylized toilet using inline SVG for consistent look -->
-        <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Using same SVG toilet art as a center piece for click target -->
+        <svg width="220" height="220" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
               <stop offset="0" stop-color="#ffffff"/>
@@ -89,16 +84,12 @@
               <stop offset="1" stop-color="#b7d7cf"/>
             </linearGradient>
           </defs>
-          <!-- bowl -->
           <ellipse cx="100" cy="130" rx="58" ry="34" fill="url(#g2)" />
           <rect x="50" y="30" rx="18" ry="18" width="100" height="64" fill="url(#g1)"/>
-          <!-- lid -->
           <rect x="64" y="20" rx="10" ry="10" width="72" height="16" fill="#f6fffb" />
-          <!-- face - eyes and mouth to make it cute -->
           <circle cx="75" cy="60" r="6" fill="#0a2a23"/>
           <circle cx="125" cy="60" r="6" fill="#0a2a23"/>
           <path d="M78 78 Q100 92 122 78" stroke="#063827" stroke-width="4" stroke-linecap="round" fill="none" />
-          <!-- water swirls -->
           <g id="swirls" opacity="0.8">
             <path d="M86 140 C88 132,112 132,114 140" stroke="#a7f0e0" stroke-width="3" fill="none" stroke-linecap="round"/>
             <path d="M95 150 C97 144,103 144,105 150" stroke="#dffcf6" stroke-width="2" fill="none" stroke-linecap="round"/>
@@ -110,12 +101,12 @@
         <button class="btn" id="reset">Reset</button>
         <button class="btn" id="export">Export Save</button>
         <button class="btn" id="importBtn">Import Save</button>
-        <input id="importText" placeholder="paste save here" style="display:none;width:1px;height:1px;border:0;padding:0;margin:0" />
+        <button class="btn" id="buyMaxCps">Buy Best CPS</button>
       </div>
 
-    </div>
-    <div style="width:100%;margin-top:6px;color:var(--muted);font-size:13px;text-align:center">
-      Tip: press the toilet quickly for combo particles!
+      <div style="width:100%;margin-top:6px;color:var(--muted);font-size:13px;text-align:center">
+        Tip: spacebar also clicks. Upgrades multiply your clicks & CPS.
+      </div>
     </div>
   </section>
 
@@ -125,50 +116,91 @@
       <div class="stat"><div>Skibidi Flushes</div><div id="stat-score">0</div></div>
       <div class="stat"><div>Flushes / second</div><div id="stat-cps">0</div></div>
       <div class="stat"><div>All-time earned</div><div id="stat-total">0</div></div>
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.02);margin:8px 0" />
-      <div class="panel-title">Store</div>
-      <div class="store" id="store"></div>
+
+      <div class="tabs" style="margin-top:12px">
+        <div class="tab active" id="tab-store">Store</div>
+        <div class="tab" id="tab-upgrades">Upgrades</div>
+      </div>
+
+      <div id="storePanel" style="margin-top:10px">
+        <div class="panel-title" style="margin-top:6px">Store</div>
+        <div class="store" id="store"></div>
+      </div>
+
+      <div id="upgradesPanel" style="display:none;margin-top:10px">
+        <div class="panel-title">Upgrades</div>
+        <div class="upgrades" id="upgrades"></div>
+      </div>
+
     </div>
   </aside>
 
   <footer>
-    Made with love and porcelain. Auto-saves every 10s. Local only.
+    Made with love and porcelain. Auto-saves every 10s. Local only. Icons: Twemoji (jsDelivr).
   </footer>
 </div>
 
 <script>
+/* ---------------------------
+   Public image icons (Twemoji via jsDelivr)
+   Twemoji unicode codes used (72x72 PNG)
+   --------------------------- */
+const IMG = {
+  toilet: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f6bd.png',      // 🚽
+  plunger: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1faa8.png',     // 🪨? (plunger emoji code is U+1FAA8 - Twemoji supports)
+  wrench: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f527.png',      // 🔧 (flush valve)
+  mic: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3a4.png',        // 🎤 (choir)
+  factory: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ed.png'     // 🏭
+};
+
 /* ---------- Game data ---------- */
 const BUILDINGS = [
-  { id:'plunger', name:'Plunger', baseCost:15, cps:0.1, desc:'A faithful plunger that slightly improves flow.' },
-  { id:'porta', name:'Porta-Potty', baseCost:120, cps:1, desc:'Mobile, smelly, but effective.' },
-  { id:'flushvalve', name:'Flush Valve', baseCost:700, cps:8, desc:'Industrial valve for mega flushes.' },
-  { id:'choir', name:'Skibidi Choir', baseCost:4500, cps:47, desc:'They sing and the toilets flush in chorus.' },
-  { id:'factory', name:'Toilet Factory', baseCost:30000, cps:260, desc:'Mass-produced toilets produce mass-produced flushes.' }
+  { id:'plunger', name:'Plunger', baseCost:15, cps:0.1, img:IMG.plunger, desc:'A faithful plunger that slightly improves flow.' },
+  { id:'porta', name:'Porta-Potty', baseCost:120, cps:1, img:IMG.toilet, desc:'Mobile, smelly, but effective.' },
+  { id:'flushvalve', name:'Flush Valve', baseCost:700, cps:8, img:IMG.wrench, desc:'Industrial valve for mega flushes.' },
+  { id:'choir', name:'Skibidi Choir', baseCost:4500, cps:47, img:IMG.mic, desc:'They sing and the toilets flush in chorus.' },
+  { id:'factory', name:'Toilet Factory', baseCost:30000, cps:260, img:IMG.factory, desc:'Mass-produced toilets produce mass-produced flushes.' }
 ];
 
-const SAVE_KEY = 'skibidi_save_v1';
+const UPGRADES = [
+  // click multipliers (applied multiplicatively)
+  { id:'click_x2', name:'Firm Flush Training', desc:'Clicks x2', cost:200, type:'click', mult:2, maxStacks:5 },
+  { id:'click_x5', name:'Legendary Pair of Underpants', desc:'Clicks x5', cost:2500, type:'click', mult:5, maxStacks:3 },
+
+  // global cps multipliers
+  { id:'cps_x1.5', name:'Improved Pipes', desc:'Global CPS x1.5', cost:800, type:'cps', mult:1.5, maxStacks:6 },
+  { id:'cps_x3', name:'Industrial Flush', desc:'Global CPS x3', cost:10000, type:'cps', mult:3, maxStacks:3 },
+
+  // building-specific boost (applies extra multiplier to a building type)
+  { id:'plunger_boost', name:'Plunger Reinforcement', desc:'Plungers x2', cost:120, type:'building', target:'plunger', mult:2, maxStacks:5 },
+  { id:'factory_boost', name:'Factory Automation', desc:'Factories x2', cost:25000, type:'building', target:'factory', mult:2, maxStacks:3 }
+];
+
+const SAVE_KEY = 'skibidi_save_v2';
 
 /* ---------- Utility ---------- */
 function fmt(n){
-  if (n < 1000) return (+n.toFixed(2)).toString();
-  const units = ['K','M','B','T','Qa','Qi'];
-  let u = 0;
+  if (!isFinite(n)) return '0';
+  if (n < 1000) return +n.toFixed(2) + '';
+  const units = ['K','M','B','T','Qa','Qi','Sx','Sp'];
+  let u = -1;
   let v = n;
   while (v >= 1000 && u < units.length-1){ v /= 1000; u++; }
-  return v.toFixed(v >= 100 ? 0 : v >= 10 ? 1 : 2) + units[u-1];
+  return v.toFixed(v >= 100 ? 0 : v >= 10 ? 1 : 2) + units[u];
 }
 
 /* ---------- Game state ---------- */
 let state = {
   score: 0,
   totalEarned: 0,
-  buildings: {}, // id -> amount
+  buildings: {},        // id -> amount
+  upgrades: {},         // id -> stacks bought
   lastTick: Date.now(),
-  clicks: 0
+  clicks: 0,
+  baseClickValue: 1
 };
-
-// init buildings counts
 BUILDINGS.forEach(b => state.buildings[b.id] = 0);
+UPGRADES.forEach(u => state.upgrades[u.id] = 0);
 
 /* ---------- DOM refs ---------- */
 const dom = {
@@ -178,24 +210,73 @@ const dom = {
   statCps: document.getElementById('stat-cps'),
   statTotal: document.getElementById('stat-total'),
   store: document.getElementById('store'),
+  upgrades: document.getElementById('upgrades'),
   toilet: document.getElementById('toilet'),
   resetBtn: document.getElementById('reset'),
   exportBtn: document.getElementById('export'),
   importBtn: document.getElementById('importBtn'),
-  importText: document.getElementById('importText')
+  buyBest: document.getElementById('buyMaxCps')
 };
+
+/* ---------- Multipliers calculation ---------- */
+function clickMultiplier(){
+  // base click value * product of click-type upgrades
+  let mult = 1;
+  UPGRADES.forEach(u => {
+    if (u.type === 'click'){
+      const stacks = state.upgrades[u.id] || 0;
+      if (stacks > 0) mult *= Math.pow(u.mult, stacks);
+    }
+  });
+  return mult;
+}
+function buildingSpecificMultiplier(buildingId){
+  let mult = 1;
+  UPGRADES.forEach(u => {
+    if (u.type === 'building' && u.target === buildingId){
+      const stacks = state.upgrades[u.id] || 0;
+      if (stacks > 0) mult *= Math.pow(u.mult, stacks);
+    }
+  });
+  return mult;
+}
+function globalCpsMultiplier(){
+  let mult = 1;
+  UPGRADES.forEach(u => {
+    if (u.type === 'cps'){
+      const stacks = state.upgrades[u.id] || 0;
+      if (stacks > 0) mult *= Math.pow(u.mult, stacks);
+    }
+  });
+  return mult;
+}
 
 /* ---------- Game logic ---------- */
 function getBuildingCost(base, owned){
-  // exponential growth slightly scaled
-  return Math.floor(base * Math.pow(1.15, owned));
+  // explicit digit-by-digit careful calc for growth: base * 1.15^owned, rounded
+  const growth = Math.pow(1.15, owned);
+  const raw = base * growth;
+  return Math.floor(raw);
+}
+
+function getUpgradeCost(upg){
+  // cost scales exponentially with stacks: base * (1.7^stacks)
+  const stacks = state.upgrades[upg.id] || 0;
+  return Math.floor(upg.cost * Math.pow(1.7, stacks));
 }
 
 function computeCPS(){
+  // compute sum of (building.cps * owned * building-specific multipliers)
   let cps = 0;
   BUILDINGS.forEach(b => {
-    cps += b.cps * (state.buildings[b.id] || 0);
+    const owned = state.buildings[b.id] || 0;
+    if (owned <= 0) return;
+    const base = b.cps * owned;
+    const spec = buildingSpecificMultiplier(b.id);
+    cps += base * spec;
   });
+  // apply global CPS multipliers
+  cps *= globalCpsMultiplier();
   return cps;
 }
 
@@ -206,7 +287,7 @@ function addScore(amount){
   updateDisplay();
 }
 
-/* ---------- UI store rendering ---------- */
+/* ---------- UI rendering ---------- */
 function renderStore(){
   dom.store.innerHTML = '';
   BUILDINGS.forEach(b => {
@@ -216,7 +297,7 @@ function renderStore(){
     card.className = 'card';
     card.innerHTML = `
       <div class="left">
-        <div class="icon">${b.name.slice(0,2).toUpperCase()}</div>
+        <div class="icon"><img src="${b.img}" alt="${b.name}"></div>
         <div>
           <h4>${b.name}</h4>
           <p>${b.desc}</p>
@@ -224,65 +305,126 @@ function renderStore(){
       </div>
       <div class="buy">
         <div class="cost">${fmt(cost)}</div>
-        <div class="owned">${owned} owned • ${fmt(b.cps)}/s each</div>
-        <button class="btn primary buy-btn" data-id="${b.id}" style="margin-top:6px">Buy</button>
+        <div class="owned">${owned} owned • ${fmt(b.cps)} / each</div>
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button class="btn primary buy-btn" data-id="${b.id}">Buy 1</button>
+          <button class="btn" data-id="${b.id}" data-buy="10">Buy x10</button>
+        </div>
       </div>
     `;
     dom.store.appendChild(card);
-    card.querySelector('.buy-btn').onclick = () => {
-      buyBuilding(b.id);
-    };
+  });
+
+  // attach events
+  dom.store.querySelectorAll('.buy-btn').forEach(btn=>{
+    btn.onclick = ()=> buyBuilding(btn.dataset.id, 1);
+  });
+  dom.store.querySelectorAll('button[data-buy]').forEach(btn=>{
+    btn.onclick = ()=> buyBuilding(btn.dataset.id, Number(btn.dataset.buy));
+  });
+}
+
+function renderUpgrades(){
+  dom.upgrades.innerHTML = '';
+  UPGRADES.forEach(u=>{
+    const stacks = state.upgrades[u.id] || 0;
+    const cost = getUpgradeCost(u);
+    const up = document.createElement('div');
+    up.className = 'upgrade-card';
+    up.innerHTML = `
+      <div>
+        <div style="font-weight:700">${u.name}</div>
+        <div style="font-size:13px;color:var(--muted)">${u.desc}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-weight:800">${fmt(cost)}</div>
+        <div style="font-size:12px;color:var(--muted)">${stacks}/${u.maxStacks} bought</div>
+        <div style="margin-top:6px">
+          <button class="btn primary up-btn" data-id="${u.id}">Buy</button>
+        </div>
+      </div>
+    `;
+    dom.upgrades.appendChild(up);
+  });
+  dom.upgrades.querySelectorAll('.up-btn').forEach(b=>{
+    b.onclick = ()=> buyUpgrade(b.dataset.id);
   });
 }
 
 /* ---------- Buying ---------- */
-function buyBuilding(id){
-  const b = BUILDINGS.find(x => x.id === id);
-  const owned = state.buildings[id] || 0;
-  const cost = getBuildingCost(b.baseCost, owned);
+function buyBuilding(id, qty=1){
+  // buy up to qty or as many as afford
+  for (let i=0;i<qty;i++){
+    const b = BUILDINGS.find(x=>x.id===id);
+    const owned = state.buildings[id] || 0;
+    const cost = getBuildingCost(b.baseCost, owned);
+    if (state.score >= cost){
+      state.score -= cost;
+      state.buildings[id] = owned + 1;
+      spawnParticle('+', Math.random()*200+50, 0, '#72f5c2');
+    } else {
+      flashColor('#ff6b6b');
+      break;
+    }
+  }
+  renderStore();
+  updateDisplay();
+}
+
+function buyUpgrade(id){
+  const u = UPGRADES.find(x=>x.id===id);
+  const stacks = state.upgrades[id] || 0;
+  if (stacks >= u.maxStacks){
+    alert('Maxed out.');
+    return;
+  }
+  const cost = getUpgradeCost(u);
   if (state.score >= cost){
     state.score -= cost;
-    state.buildings[id] = owned + 1;
+    state.upgrades[id] = stacks + 1;
+    renderUpgrades();
     updateDisplay();
-    renderStore();
-    spawnParticle('+1', Math.random()*200+50, 0, '#72f5c2');
+    spawnParticle('UP', Math.random()*200+50, 0, '#ffd66b');
   } else {
-    // small shake animation or feedback
     flashColor('#ff6b6b');
   }
 }
 
 /* ---------- Click handling ---------- */
 function onToiletClick(ev){
-  const now = Date.now();
-  const delta = Math.max(1, Math.round(1 + Math.random()*2)); // base per click
-  addScore(delta);
+  // careful arithmetic: Compute click value: baseClickValue * clickMultiplier()
+  const base = state.baseClickValue;
+  const mult = clickMultiplier();
+  // compute result step-by-step
+  const step1 = base * mult;
+  const result = step1;
+  // Add
+  addScore(result);
   state.clicks++;
-  spawnParticle('+'+delta, ev.clientX, ev.clientY);
+  spawnParticle('+'+fmt(result), ev.clientX, ev.clientY);
   animateSplash();
   beep(Math.min(800 + state.clicks*10, 1500), 0.05);
 }
 
-/* ---------- Visuals: particle, splash ---------- */
+/* ---------- Visual helpers ---------- */
 function spawnParticle(text, clientX, clientY, color){
   const p = document.createElement('div');
   p.className = 'particle';
   p.textContent = text;
-  p.style.left = (clientX - (appLeft())) + 'px';
-  p.style.top = (clientY - (appTop())) + 'px';
+  p.style.left = (clientX - appLeft()) + 'px';
+  p.style.top = (clientY - appTop()) + 'px';
   p.style.color = color || '#a9fff0';
   p.style.transform = 'translate(-50%, -50%)';
+  p.style.fontSize = '16px';
   document.body.appendChild(p);
   const anim = p.animate([
     { transform:'translate(-50%,-50%) scale(1)', opacity:1 },
-    { transform:'translate(-50%,-160%) scale(0.6)', opacity:0 }
+    { transform:'translate(-50%,-180%) scale(0.6)', opacity:0 }
   ], {duration:900, easing:'cubic-bezier(.2,.7,0,1)'});
   anim.onfinish = ()=>p.remove();
 }
-
 function appLeft(){ return document.getElementById('app').getBoundingClientRect().left; }
 function appTop(){ return document.getElementById('app').getBoundingClientRect().top; }
-
 let splashTimeout = null;
 function animateSplash(){
   const toilet = dom.toilet;
@@ -290,7 +432,6 @@ function animateSplash(){
   toilet.style.transform = 'scale(0.98) translateY(-6px)';
   splashTimeout = setTimeout(()=> toilet.style.transform = '', 120);
 }
-
 function flashColor(color='#ff6b6b'){
   const app = document.getElementById('app');
   const old = app.style.boxShadow;
@@ -333,6 +474,7 @@ function save(){
       score: state.score,
       totalEarned: state.totalEarned,
       buildings: state.buildings,
+      upgrades: state.upgrades,
       lastTick: Date.now()
     };
     localStorage.setItem(SAVE_KEY, JSON.stringify(toSave));
@@ -347,6 +489,7 @@ function load(){
     if (data.score != null) state.score = data.score;
     if (data.totalEarned != null) state.totalEarned = data.totalEarned;
     if (data.buildings) state.buildings = data.buildings;
+    if (data.upgrades) state.upgrades = data.upgrades;
     state.lastTick = Date.now();
   } catch(e){ console.warn('Load failed', e); }
 }
@@ -357,16 +500,14 @@ function resetGame(){
   localStorage.removeItem(SAVE_KEY);
   location.reload();
 }
-
 function exportSave(){
   try {
     const raw = localStorage.getItem(SAVE_KEY) || JSON.stringify({
-      score:0, totalEarned:0, buildings: state.buildings
+      score:0, totalEarned:0, buildings: state.buildings, upgrades: state.upgrades
     });
     navigator.clipboard.writeText(raw).then(()=> alert('Save copied to clipboard!'));
   } catch(e){ alert('Export failed'); }
 }
-
 function importSave(){
   const txt = prompt('Paste full save JSON here:');
   if (!txt) return;
@@ -376,6 +517,36 @@ function importSave(){
     alert('Imported! Reloading...');
     location.reload();
   } catch(e){ alert('Import failed: invalid JSON'); }
+}
+
+/* ---------- Buy best CPS helper (attempts to buy best affordable building repeatedly) ---------- */
+function buyBestCps(){
+  // Sort buildings by (cps / cost) descending, try to buy best repeatedly until can't
+  let loop = true;
+  while(loop){
+    loop = false;
+    // compute affordability and value
+    let best = null;
+    let bestRatio = 0;
+    BUILDINGS.forEach(b=>{
+      const owned = state.buildings[b.id] || 0;
+      const cost = getBuildingCost(b.baseCost, owned);
+      if (cost <= state.score){
+        const ratio = (b.cps * buildingSpecificMultiplier(b.id)) / cost;
+        if (ratio > bestRatio){
+          bestRatio = ratio;
+          best = {b, cost};
+        }
+      }
+    });
+    if (best && best.cost <= state.score){
+      state.score -= best.cost;
+      state.buildings[best.b.id] = (state.buildings[best.b.id] || 0) + 1;
+      loop = true;
+    }
+  }
+  renderStore();
+  updateDisplay();
 }
 
 /* ---------- Sound (tiny beep) ---------- */
@@ -395,10 +566,25 @@ function beep(freq=800, duration=0.08){
   } catch(e){ /* ignore if blocked */ }
 }
 
+/* ---------- Tabs ---------- */
+document.getElementById('tab-store').onclick = ()=>{
+  document.getElementById('tab-store').classList.add('active');
+  document.getElementById('tab-upgrades').classList.remove('active');
+  document.getElementById('storePanel').style.display = '';
+  document.getElementById('upgradesPanel').style.display = 'none';
+};
+document.getElementById('tab-upgrades').onclick = ()=>{
+  document.getElementById('tab-upgrades').classList.add('active');
+  document.getElementById('tab-store').classList.remove('active');
+  document.getElementById('storePanel').style.display = 'none';
+  document.getElementById('upgradesPanel').style.display = '';
+};
+
 /* ---------- Init ---------- */
 (function init(){
   load();
   renderStore();
+  renderUpgrades();
   updateDisplay();
 
   // click
@@ -406,6 +592,7 @@ function beep(freq=800, duration=0.08){
   dom.resetBtn.onclick = resetGame;
   dom.exportBtn.onclick = exportSave;
   dom.importBtn.onclick = importSave;
+  dom.buyBest.onclick = buyBestCps;
 
   // game loop - tick every 1s but calculate elapsed for smoothness
   state.lastTick = Date.now();
@@ -414,14 +601,13 @@ function beep(freq=800, duration=0.08){
   // autosave
   setInterval(save, 10000);
 
-  // minor particle on load
+  // particle hello
   spawnParticle('Skibidi!', appLeft()+120, appTop()+60, '#72f5c2');
 })();
 
-/* ---------- keyboard quick boost (fun) ---------- */
+/* ---------- keyboard quick boost ---------- */
 document.addEventListener('keydown', (e)=>{
   if (e.key === ' '){
-    // spacebar to click quickly
     const rect = dom.toilet.getBoundingClientRect();
     onToiletClick({clientX: rect.left + rect.width/2, clientY: rect.top + rect.height/2});
     e.preventDefault();
